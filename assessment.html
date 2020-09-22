@@ -1,0 +1,170 @@
+<html><head>
+	<base target="_parent">
+	<meta charset="utf-8">
+	<meta name="description" content="Mobile friendly Final Fantasy XIV Mini-Cactpot perfect solver. Maximize your cactpot winnings!">
+	<script async="" src="//www.google-analytics.com/analytics.js"></script><script type="text/javascript" src="solver.min.js" async=""></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="gs-oasis.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet" type="text/css">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>Cactpot.XYZ Mini-Cactpot Solver</title>
+	<style>
+		div { margin: 10px; }
+		.titlefont {font-family: 'Cinzel', serif;color:#F5F5DC }
+		body { padding-top: 25px; }
+		
+		@keyframes suggestion {
+			0%   {background-color: #D4AF37;}
+			40%  {background-color: #c0c0c0;}
+			60% {background-color: #D4AF37;}
+		 }
+		 @keyframes choice {
+			0% {color:green;}
+			50% {color:white;}
+			100% {color:green;}
+		 }
+		
+		select::-ms-value {background: transparent; color:red;}
+		select::-ms-expand {display: none;}
+
+		.styled-select {
+		   height: 50px;
+		   overflow: hidden;
+		   width: 50px;
+		   font-size: 24px;
+		   color: red;
+		   margin: auto;
+		}
+		
+		.fa-rotate-45 {
+			-webkit-transform: rotate(45deg);
+			-moz-transform: rotate(45deg);
+			-ms-transform: rotate(45deg);
+			-o-transform: rotate(45deg);
+			transform: rotate(45deg);
+		}
+		
+		.styled-select select {
+		   background: transparent;
+		   border: none;
+		   -webkit-appearance: none;
+		   -moz-appearance: none;
+		   appearance: none;
+		   text-indent: 0.01px;
+		   text-overflow: '';
+		   font-size: 24px;
+		   color: red;
+		   height: 50px;
+		   padding: 10px 0px 10px 15px;
+		   width: 50px;
+		   outline: none;
+		}
+		
+		.rounded {
+		   -webkit-border-radius: 25px;
+		   -moz-border-radius: 25px;
+		   border-radius: 25px;
+		   border: 3px solid #D4AF37;
+		   text-align:center;
+		}
+		
+		/* -------------------- Colors: Background */
+		.silver  { background-color: #c0c0c0; }
+		.gold { color:#D4AF37;text-align:center;width:100%;}
+		.red {color:#900000;}
+		.suggest {
+			background-color: #D4AF37;
+			animation-name: suggestion;
+		    animation-duration: 2s;
+			animation-iteration-count: infinite;
+		}
+		
+		.payout {
+			text-align:right;
+			color:#cccccc;
+			width:100%;
+		}
+		
+		.victory {
+			animation-name: choice;
+		    animation-duration: 1s;
+			animation-iteration-count: infinite;
+		}
+		
+		.borderless tbody tr td, .borderless tbody tr th, .borderless thead tr th {
+			border: none;
+		}
+
+		.exprow td.exp {
+			width: 20%;			
+			text-align:center;
+			color:#cccccc;
+			text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;}
+			
+		.btn-lg.round {
+			border-radius: 24px;
+		}
+		
+		.btn:focus {
+			outline: none;
+		  }
+	</style>
+</head>
+<body style="background-color:#222222">&gt;
+	<div class="container">
+	<main>
+			<nav class="navbar navbar-inverse navbar-fixed-top" style="border-color:#900000;">
+				<a class="navbar-brand" style="font-family: 'Orbitron', sans-serif;color:#900000;font-size:24px;">Cactpot.xyz</a>
+			</nav>
+			<center><h2 class="titlefont">Mini Cactpot</h2></center>
+			<div class="row">
+				<div class="col-sm-offset-2 col-sm-4">
+						<table id="scratch" class="table borderless" style="table-layout:fixed;">
+							<tbody>
+								<tr class="exprow">
+									<td id="ed0" class="exp"><i class="fa fa-arrow-circle-o-right fa-rotate-45 fa-4x"></i></td>
+									<td id="ec0" class="exp"><i class="fa fa-arrow-circle-o-down fa-4x"></i></td>
+									<td id="ec1" class="exp"><i class="fa fa-arrow-circle-o-down fa-4x"></i></td>
+									<td id="ec2" class="exp"><i class="fa fa-arrow-circle-o-down fa-4x"></i></td>
+								</tr>
+							<tr id="row0" class="exprow"><td id="er0" class="exp"><i class="fa fa-arrow-circle-o-right fa-4x"></i></td><td id="r0c0" class="exp"><div class="styled-select silver rounded"><select name="0"><option value="0" selected="selected"></option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option></select></div></td><td id="r0c1" class="exp"><div class="styled-select silver rounded"><select name="1"><option value="0" selected="selected"></option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option></select></div></td><td id="r0c2" class="exp"><div class="styled-select silver rounded"><select name="2"><option value="0" selected="selected"></option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option></select></div></td></tr><tr id="row1" class="exprow"><td id="er1" class="exp"><i class="fa fa-arrow-circle-o-right fa-4x"></i></td><td id="r1c0" class="exp"><div class="styled-select silver rounded"><select name="3"><option value="0" selected="selected"></option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option></select></div></td><td id="r1c1" class="exp"><div class="styled-select silver rounded"><select name="4"><option value="0" selected="selected"></option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option></select></div></td><td id="r1c2" class="exp"><div class="styled-select silver rounded"><select name="5"><option value="0" selected="selected"></option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option></select></div></td></tr><tr id="row2" class="exprow"><td id="er2" class="exp"><i class="fa fa-arrow-circle-o-right fa-4x"></i></td><td id="r2c0" class="exp"><div class="styled-select silver rounded"><select name="6"><option value="0" selected="selected"></option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option></select></div></td><td id="r2c1" class="exp"><div class="styled-select silver rounded"><select name="7"><option value="0" selected="selected"></option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option></select></div></td><td id="r2c2" class="exp"><div class="styled-select silver rounded"><select name="8"><option value="0" selected="selected"></option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option></select></div></td></tr><tr id="row3" class="exprow"><td id="ed1" class="exp"><i class="fa fa-arrow-circle-o-up fa-rotate-45 fa-4x"></i></td></tr></tbody>
+						</table>
+						<center><input type="button" name="reset" value="Reset" onclick="resetScratch()" class="btn btn-lg btn-primary btn-block round"></center>
+				</div>
+				<div class="col-sm-4">
+					<center><label style="color:white;padding:0px;font-size:2em;font-weight:300">Payout</label></center>
+					<table id="payout" class="table table-condensed borderless" style="color:#cccccc;font-size:18px">
+						<thead>
+							<tr><th style="width:15%">Sum</th><th style="width:22%;text-align:center">MGP</th><th style="width:26%"></th><th style="width:15%">Sum</th><th style="width:22%;text-align:center">MGP</th></tr>
+						</thead>
+						<tbody><tr><td><label for="p6" class="gold">6</label></td><td><label class="payout" id="p6">10000</label></td><td></td><td><label for="p16" class="gold">16</label></td><td><label class="payout" id="p16">72</label></td></tr><tr><td><label for="p7" class="gold">7</label></td><td><label class="payout" id="p7">36</label></td><td></td><td><label for="p17" class="gold">17</label></td><td><label class="payout" id="p17">180</label></td></tr><tr><td><label for="p8" class="gold">8</label></td><td><label class="payout" id="p8">720</label></td><td></td><td><label for="p18" class="gold">18</label></td><td><label class="payout" id="p18">119</label></td></tr><tr><td><label for="p9" class="gold">9</label></td><td><label class="payout" id="p9">360</label></td><td></td><td><label for="p19" class="gold">19</label></td><td><label class="payout" id="p19">36</label></td></tr><tr><td><label for="p10" class="gold">10</label></td><td><label class="payout" id="p10">80</label></td><td></td><td><label for="p20" class="gold">20</label></td><td><label class="payout" id="p20">306</label></td></tr><tr><td><label for="p11" class="gold">11</label></td><td><label class="payout" id="p11">252</label></td><td></td><td><label for="p21" class="gold">21</label></td><td><label class="payout" id="p21">1080</label></td></tr><tr><td><label for="p12" class="gold">12</label></td><td><label class="payout" id="p12">108</label></td><td></td><td><label for="p22" class="gold">22</label></td><td><label class="payout" id="p22">144</label></td></tr><tr><td><label for="p13" class="gold">13</label></td><td><label class="payout" id="p13">72</label></td><td></td><td><label for="p23" class="gold">23</label></td><td><label class="payout" id="p23">1800</label></td></tr><tr><td><label for="p14" class="gold">14</label></td><td><label class="payout" id="p14">54</label></td><td></td><td><label for="p24" class="gold">24</label></td><td><label class="payout" id="p24">3600</label></td></tr><tr><td><label for="p15" class="gold">15</label></td><td><label class="payout" id="p15">180</label></td><th></th><td></td><td></td></tr></tbody>
+					</table>
+				</div>
+				<div style="text-align:center">
+					<a href="https://play.google.com/store/apps/details?id=xyz.cactpot&amp;utm_source=global_co&amp;utm_medium=prtnr&amp;utm_content=Mar2515&amp;utm_campaign=PartBadge&amp;pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" height="60" width="200"></a>
+					<br>Android, Google Play and the Google Play logo are trademarks of Google Inc.
+				</div>
+				<div>
+					<script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+					<center><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3260579969312116" data-ad-slot="8005186384" data-ad-format="auto"></ins></center>
+					<script>
+					(adsbygoogle = window.adsbygoogle || []).push({});
+					</script>
+				</div>
+			</div>
+		</main>
+	</div>
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-72788168-1', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+</body></html>
